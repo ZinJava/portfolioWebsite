@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Madison's Portfolio</title>
+
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="/portfolio">Home</a></li>
+        </ul>
+    </nav>
+</header>
+<div>
+    <h1>Contact Me</h1>
+    <form action="@{/send}" method="post">
+        <input id="name" name="name" placeholder="Name" required type="text">
+        <input id="email" name="email" placeholder="Email" required type="text">
+        <textarea id="message" name="message" placeholder="Enter message here" required></textarea>
+        <input type="submit" value="Send">
+    </form>
+</div>
+</body>
+</html>
