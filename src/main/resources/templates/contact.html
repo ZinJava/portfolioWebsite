@@ -15,12 +15,34 @@
 </header>
 <div>
     <h1>Contact Me</h1>
-    <form action="@{/send}" method="post">
+    <form id="contact-form">
         <input id="name" name="name" placeholder="Name" required type="text">
         <input id="email" name="email" placeholder="Email" required type="text">
         <textarea id="message" name="message" placeholder="Enter message here" required></textarea>
         <input type="submit" value="Send">
     </form>
 </div>
+<script>
+    const form = document.querySelector('#contact-form');
+
+    async function sendForm() {
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('http://localhost:8080/contact/send', {
+                method: 'POST',
+                body: formData
+            });
+            console.log(await response.json());
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        sendForm();
+    });
+</script>
 </body>
 </html>
