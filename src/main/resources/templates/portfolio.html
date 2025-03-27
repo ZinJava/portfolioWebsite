@@ -5,14 +5,32 @@
     <title>Madison's Portfolio</title>
 </head>
 <body>
-<header>
-    <nav>
-        <ul>
-            <li><a href="/Home">Home</a></li>
-            <li><a href="/contact">Contact Me</a></li>
-        </ul>
-    </nav>
-</header>
+<div>
+    <h1>Contact Me</h1>
+    <form id="contact-form">
+        <input id="email" name="email" placeholder="Email" required type="text">
+        <input id="subject" name="subject" placeholder="Subject" type="text">
+        <textarea id="message" name="message" placeholder="Enter message here" required></textarea>
+        <input type="submit" value="Send">
+    </form>
+</div>
+<script>
+    const formEl = document.querySelector('#contact-form');
 
+    formEl.addEventListener('submit', (event) => { //listen for submit
+        event.preventDefault(); //prevents refresh of page on submit
+
+        const formData = new FormData(formEl)
+        const data = Object.fromEntries(formData)
+
+        fetch('http://localhost:8080/contact/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+    });
+</script>
 </body>
 </html>
